@@ -1,23 +1,21 @@
-import {Router, Request, Response, response} from 'express';
-import {CreateUserService} from '../../services/user/CreateUserService'
+import {Request, Response} from 'express';
+import {CreateCategoryService} from '../../services/category/CreateCategoryService'
 
-class CreateUserController{
+class CreateCategoryController{
     async handle(req: Request, res: Response){
         //CRIAR VARIAVEIS COM AS INFOS RECEBIDAS
-        const {name, email, password} = req.body;
+        const {name} = req.body;
 
         //CRIAR UM OBJETO COM A FUNÇÃO FEITA EM SERVICE
-        const createUserService = new CreateUserService();
+        const createCategoryService = new CreateCategoryService();
 
-        const user = await createUserService.execute({
-            name,
-            email,
-            password
+        const category = await createCategoryService.execute({
+            name
         });
         //RETORNA PARA O USUARIO
         //O BANCO JA FOI CADASTRADO
-        return res.json(user)
+        return res.json(category);
     }
     
 }
-export {CreateUserController};
+export {CreateCategoryController};

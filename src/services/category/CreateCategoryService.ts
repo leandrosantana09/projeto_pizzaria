@@ -6,14 +6,15 @@ interface CategoryRequest{
 }
 
 class CreateCategoryService{
-    async execute({name}: CategoryRequest){
+    async execute({ name }: CategoryRequest){
         //SE NÃO TIVER NOME VOLTA
-        if(!name){
+        if(name === ''){
             throw new Error('DEU ERRO')
         }
         //SE TIVER CRIA
         const category = await prismaClient.category.create({
-            data:{name},
+            data:{
+                name: name},
             select: {
                 id:true,
                 name:true
