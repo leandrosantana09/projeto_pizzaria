@@ -1,8 +1,11 @@
 import express, {Request, Response, NextFunction} from 'express';
+import dotenv from "dotenv";
 import 'express-async-errors';
 import cors from 'cors';
- 
+
 import {router} from './routes';
+
+dotenv.config();
 
 const PORT = process.env.PORT || 3333
 
