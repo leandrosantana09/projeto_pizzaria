@@ -4,6 +4,8 @@ import cors from 'cors';
  
 import {router} from './routes';
 
+const PORT = process.env.PORT || 3333
+
 const app = express();
 
 app.use(express.json());
@@ -24,4 +26,4 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
 
 })
 
-app.listen(3333, () => console.log('ONLINE essa POHHA!FLAMENGO GREMIO E CLEALSEA'))
+app.listen(PORT, () => console.log('SERVIDOR ONLINE!'))
