@@ -3,8 +3,8 @@
   "packageManager": "yarn@3.6.0",
   "scripts": {
     "dev": "ts-node-dev --transpile-only src/index.ts",
-    "start": "node build/index.js",
-    "build": "tsc"
+    "build": "rm -rf /build && tsc",
+    "start": "node build/index.js"
   },
   "dependencies": {
     "@prisma/client": "^4.15.0",
