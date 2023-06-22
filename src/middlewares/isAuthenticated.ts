@@ -13,7 +13,7 @@ export function isAuthenticated(
 ){
     const authToken = req.headers.authorization;
 
-    console.log(authToken)
+    // console.log(authToken)
 
     if(!authToken){
         return res.status(401).end();
@@ -21,13 +21,17 @@ export function isAuthenticated(
 
     const [, token] = authToken.split(" ");
 
-    console.log(token)
+    // console.log(token)
 
     try{
         const {sub} = verify(
             token,
             process.env.JWTOKEN
             ) as PayLoad;
+
+
+    //Recuperar is e mandar dentro da req
+    req.user_id = sub;        
             
     return next();
     

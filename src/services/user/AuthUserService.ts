@@ -15,21 +15,15 @@ class AuthUserService{
                 email: email
             }
         })
-
         if(!user){
             throw new Error('User/password incorrect!')
         }
-
         const passMatch = await compare(password, user.password)
-
         if(!passMatch){
             throw new Error('User/password incorrect!')
-
         }
 
         const passHash = await hash(password, 8)
-
-
         //ENTROU
         const token = sign(
         {
@@ -42,8 +36,6 @@ class AuthUserService{
             expiresIn: '30d'
         }
         )
-
-        
         return {
             name: user.name,
             email: user.email,

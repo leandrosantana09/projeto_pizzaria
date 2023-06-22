@@ -1,45 +1,28 @@
 import prismaClient from "../../prisma";
-import { hash } from "bcryptjs";
 
-interface UserRequest{
+interface ProductRequest{
     name: string;
-    email: string;
-    password: string; 
+    price: string;
+    description: string;
+    banner: string;
+    category_id: string
 }
 
-class CreateUserService{
-    async execute({name, email, password}: UserRequest){
-        //CONFERIR SE O EMAIL FOI PREENCHIDO, E SE É DIFERENTE DOS QUE JA FORAM CADASTRADOS
-        //SE FOI PREENCHIDO
-        if(!email){
-            throw new Error('DEU ERRO')
-        }
-        //SE É DIFERENTE
-        const userAlreadyExists = await prismaClient.user.findFirst({
-            where:{
-                email: email
-            }
-        })
-        if(userAlreadyExists){
-            throw new Error('erro')
-        }
+class CreateProductService{
+    async execute({name, price, description, banner, category_id}: ProductRequest){
 
-        const passHash = await hash(password, 8)
-        //CADASTRANDO
-        const user = await prismaClient.user.create({
+        const product = await prismaClient.product.create({
             data:{
                 name: name,
-                email: email,
-                password: passHash
-            },
-            select:{
-                id: true,
-                name: true,
-                email: true
+                price: price,
+                description: description,
+                banner: banner,
+                category_id: category_id,
             }
         })
-        return user;
+
+        return product;
     }
 }
 
-export{CreateUserService}
+export{CreateProductService}
