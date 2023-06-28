@@ -8,7 +8,10 @@ interface AuthRequest{
 }
 
 class AuthUserService{
-    async execute({email, password}: AuthRequest){
+    async execute({
+        email,
+        password
+    }: AuthRequest){
 
         const user = await prismaClient.user.findFirst({
             where:{
@@ -18,12 +21,16 @@ class AuthUserService{
         if(!user){
             throw new Error('User/password incorrect!')
         }
-        const passMatch = await compare(password, user.password)
+        const passMatch = await compare(password,
+            user.password)
+            
         if(!passMatch){
             throw new Error('User/password incorrect!')
         }
 
-        const passHash = await hash(password, 8)
+        const passHash = await hash(password,
+            8)
+
         //ENTROU
         const token = sign(
         {

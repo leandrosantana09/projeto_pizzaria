@@ -6,8 +6,8 @@ class ListCategoryService{
         //SE TIVER CRIA
         const category = await prismaClient.category.findMany({
             select: {
-                id:true,
-                name:true
+                id: true,
+                name: true
             }
         })
         return category;

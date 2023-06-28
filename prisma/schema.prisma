@@ -1,6 +1,8 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
+//prisma generate para subir mudanças
+
 generator client {
   provider = "prisma-client-js"
   binaryTargets = ["native", "rhel-openssl-1.0.x"]
@@ -79,8 +81,8 @@ model Item {
 model Order {
   id String @id @default(uuid())
   table Int
-  status Boolean
-  draft Boolean
+  status Boolean @default(false)
+  draft Boolean @default(true)
   name String?
 
   @@map("orders")

@@ -8,7 +8,11 @@ interface UserRequest{
 }
 
 class CreateUserService{
-    async execute({name, email, password}: UserRequest){
+    async execute({
+        name,
+        email,
+        password
+    }: UserRequest){
         //CONFERIR SE O EMAIL FOI PREENCHIDO, E SE É DIFERENTE DOS QUE JA FORAM CADASTRADOS
         //SE FOI PREENCHIDO
         if(!email){
@@ -24,7 +28,9 @@ class CreateUserService{
             throw new Error('erro')
         }
 
-        const passHash = await hash(password, 8)
+        const passHash = await hash(password,
+            8
+            )
         //CADASTRANDO
         const user = await prismaClient.user.create({
             data:{
