@@ -12,42 +12,22 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateUserService = void 0;
+exports.CreateProductService = void 0;
 const prisma_1 = __importDefault(require("../../prisma"));
-const bcryptjs_1 = require("bcryptjs");
-class CreateUserService {
-    execute({ name, email, password }) {
+class CreateProductService {
+    execute({ name, price, description, banner, category_id }) {
         return __awaiter(this, void 0, void 0, function* () {
-            //CONFERIR SE O EMAIL FOI PREENCHIDO, E SE É DIFERENTE DOS QUE JA FORAM CADASTRADOS
-            //SE FOI PREENCHIDO
-            if (!email) {
-                throw new Error('DEU ERRO');
-            }
-            //SE É DIFERENTE
-            const userAlreadyExists = yield prisma_1.default.user.findFirst({
-                where: {
-                    email: email
-                }
-            });
-            if (userAlreadyExists) {
-                throw new Error('erro');
-            }
-            const passHash = yield (0, bcryptjs_1.hash)(password, 8);
-            //CADASTRANDO
-            const user = yield prisma_1.default.user.create({
+            const product = yield prisma_1.default.product.create({
                 data: {
                     name: name,
-                    email: email,
-                    password: passHash
-                },
-                select: {
-                    id: true,
-                    name: true,
-                    email: true
+                    price: price,
+                    description: description,
+                    banner: banner,
+                    category_id: category_id,
                 }
             });
-            return user;
+            return product;
         });
     }
 }
-exports.CreateUserService = CreateUserService;
+exports.CreateProductService = CreateProductService;

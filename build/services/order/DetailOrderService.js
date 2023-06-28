@@ -8,24 +8,26 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateOrderController = void 0;
-const CreateOrderService_1 = require("../../services/order/CreateOrderService");
-class CreateOrderController {
-    handle(req, res) {
+exports.DetailOrderService = void 0;
+const prisma_1 = __importDefault(require("../../prisma"));
+class DetailOrderService {
+    execute({ order_id }) {
         return __awaiter(this, void 0, void 0, function* () {
-            //CRIAR VARIAVEIS COM AS INFOS RECEBIDAS
-            const { table, name } = req.body;
-            //CRIAR UM OBJETO COM A FUNÇÃO FEITA EM SERVICE
-            const createOrderService = new CreateOrderService_1.CreateOrderService();
-            const order = yield createOrderService.execute({
-                table,
-                name
+            const order = yield prisma_1.default.order.findFirst({
+                where: {
+                    id: order_id
+                },
+                select: {
+                    id: true,
+                    name: true
+                }
             });
-            //RETORNA PARA O USUARIO
-            //O BANCO JA FOI CADASTRADO
-            return res.json(order);
+            return order;
         });
     }
 }
-exports.CreateOrderController = CreateOrderController;
+exports.DetailOrderService = DetailOrderService;

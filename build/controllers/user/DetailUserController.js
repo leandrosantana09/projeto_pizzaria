@@ -14,9 +14,10 @@ const DetailUserService_1 = require("../../services/user/DetailUserService");
 class DetailUserController {
     handle(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
+            const user_id = req.user_id;
             //CRIAR UM OBJETO COM A FUNÇÃO FEITA EM SERVICE
             const detailUserService = new DetailUserService_1.DetailUserService();
-            const user = yield detailUserService.execute();
+            const user = yield detailUserService.execute({ user_id });
             //RETORNA PARA O USUARIO
             //O BANCO JA FOI CADASTRADO
             return res.json(user);

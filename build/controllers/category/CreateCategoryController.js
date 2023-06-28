@@ -14,15 +14,11 @@ const CreateCategoryService_1 = require("../../services/category/CreateCategoryS
 class CreateCategoryController {
     handle(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            //CRIAR VARIAVEIS COM AS INFOS RECEBIDAS
             const { name } = req.body;
-            //CRIAR UM OBJETO COM A FUNÇÃO FEITA EM SERVICE
             const createCategoryService = new CreateCategoryService_1.CreateCategoryService();
             const category = yield createCategoryService.execute({
                 name
             });
-            //RETORNA PARA O USUARIO
-            //O BANCO JA FOI CADASTRADO
             return res.json(category);
         });
     }

@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-declare class CreateOrderController {
+declare class CreateProductController {
     handle(req: Request, res: Response): Promise<Response<any, Record<string, any>>>;
 }
-export { CreateOrderController };
+export { CreateProductController };

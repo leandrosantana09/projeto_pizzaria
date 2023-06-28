@@ -3,8 +3,8 @@ interface CategoryRequest {
 }
 declare class CreateCategoryService {
     execute({ name }: CategoryRequest): Promise<{
-        name: string;
         id: string;
+        name: string;
     }>;
 }
 export { CreateCategoryService };

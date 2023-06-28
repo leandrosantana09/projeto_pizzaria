@@ -14,11 +14,8 @@ const ListCategoryService_1 = require("../../services/category/ListCategoryServi
 class ListCategoryController {
     handle(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            //CRIAR UM OBJETO COM A FUNÇÃO FEITA EM SERVICE
             const listCategoryService = new ListCategoryService_1.ListCategoryService();
             const category = yield listCategoryService.execute();
-            //RETORNA PARA O USUARIO
-            //O BANCO JA FOI CADASTRADO
             return res.json(category);
         });
     }

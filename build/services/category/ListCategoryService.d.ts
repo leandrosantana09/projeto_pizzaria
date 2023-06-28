@@ -1,7 +1,7 @@
 declare class ListCategoryService {
     execute(): Promise<{
-        name: string;
         id: string;
+        name: string;
     }[]>;
 }
 export { ListCategoryService };

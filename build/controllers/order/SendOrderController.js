@@ -9,23 +9,18 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateOrderController = void 0;
-const CreateOrderService_1 = require("../../services/order/CreateOrderService");
-class CreateOrderController {
+exports.SendOrderController = void 0;
+const SendOrderService_1 = require("../../services/order/SendOrderService");
+class SendOrderController {
     handle(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            //CRIAR VARIAVEIS COM AS INFOS RECEBIDAS
-            const { table, name } = req.body;
-            //CRIAR UM OBJETO COM A FUNÇÃO FEITA EM SERVICE
-            const createOrderService = new CreateOrderService_1.CreateOrderService();
-            const order = yield createOrderService.execute({
-                table,
-                name
+            const { order_id } = req.body;
+            const sendOrderService = new SendOrderService_1.SendOrderService();
+            const order = yield sendOrderService.execute({
+                order_id
             });
-            //RETORNA PARA O USUARIO
-            //O BANCO JA FOI CADASTRADO
             return res.json(order);
         });
     }
 }
-exports.CreateOrderController = CreateOrderController;
+exports.SendOrderController = SendOrderController;

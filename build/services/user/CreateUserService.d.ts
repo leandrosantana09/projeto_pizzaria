@@ -5,9 +5,9 @@ interface UserRequest {
 }
 declare class CreateUserService {
     execute({ name, email, password }: UserRequest): Promise<{
+        id: string;
         name: string;
         email: string;
-        id: string;
     }>;
 }
 export { CreateUserService };

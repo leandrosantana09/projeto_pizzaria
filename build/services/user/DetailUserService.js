@@ -8,17 +8,26 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DetailUserService = void 0;
-// interface UserRequest{
-//     name: string;
-//     email: string;
-//     password: string; 
-// }
+const prisma_1 = __importDefault(require("../../prisma"));
 class DetailUserService {
-    execute() {
+    execute({ user_id }) {
         return __awaiter(this, void 0, void 0, function* () {
-            return { ok: true };
+            const user = yield prisma_1.default.user.findFirst({
+                where: {
+                    id: user_id
+                },
+                select: {
+                    id: true,
+                    name: true,
+                    email: true
+                }
+            });
+            return user;
         });
     }
 }

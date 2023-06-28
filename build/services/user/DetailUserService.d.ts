@@ -1,6 +1,11 @@
+interface UserRequest {
+    user_id: string;
+}
 declare class DetailUserService {
-    execute(): Promise<{
-        ok: boolean;
+    execute({ user_id }: UserRequest): Promise<{
+        id: string;
+        name: string;
+        email: string;
     }>;
 }
 export { DetailUserService };

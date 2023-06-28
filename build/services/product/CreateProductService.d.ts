@@ -1,13 +1,20 @@
-interface UserRequest {
+interface ProductRequest {
     name: string;
-    email: string;
-    password: string;
+    price: string;
+    description: string;
+    banner: string;
+    category_id: string;
 }
-declare class CreateUserService {
-    execute({ name, email, password }: UserRequest): Promise<{
+declare class CreateProductService {
+    execute({ name, price, description, banner, category_id }: ProductRequest): Promise<{
         name: string;
-        email: string;
         id: string;
-    }>;
+        creat_at: Date;
+        upgrade_at: Date;
+        price: string;
+        description: string;
+        banner: string;
+        category_id: string;
+    } & {}>;
 }
-export { CreateUserService };
+export { CreateProductService };
